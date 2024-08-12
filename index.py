@@ -166,6 +166,28 @@ import utils
 from utils import increase_age as addup_age
 from utils import *
 
-print(utils.print_name())
-print(addup_age(3))
-print(change_location("paris"))
+# print(utils.print_name())
+# print(addup_age(3))
+# print(change_location("paris"))
+
+# MODULES FROM PYTHON STANDARD LIB
+from datetime import datetime
+
+# current_date = datetime(year=2024, month=8, day=12, hour=3, minute=12, second=50)
+current_date = datetime(year=2024, month=8, day=12, hour=3, minute=12, second=50)
+# print(current_date.now())
+
+
+# CLASS IN PYTHON
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def greet(self):
+        return f"hello, {self.name}"
+
+
+info = Person("Goke", 27)
+
+print(info.greet())
