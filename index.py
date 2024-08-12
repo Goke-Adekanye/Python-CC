@@ -195,8 +195,6 @@ info = Person("Goke", 27)
 
 # OBJECT ORIENTED PROGRAMMING (OOP)
 # INHERITANCE
-
-
 # parent / base class
 class Animal:
     def __init__(self, name):
