@@ -190,4 +190,31 @@ class Person:
 
 info = Person("Goke", 27)
 
-print(info.greet())
+# print(info.greet())
+
+
+# OBJECT ORIENTED PROGRAMMING (OOP)
+# INHERITANCE
+
+
+# parent / base class
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def animal_info(self):
+        return f"This is a {self.name}"
+
+
+info = Animal("Goat")
+print(info.animal_info())
+
+
+# child / derived class
+class mammal(Animal):
+    def check(self):
+        return "new mammal"
+
+
+info2 = mammal("Cow")
+print(info2.animal_info())
