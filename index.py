@@ -144,8 +144,8 @@ def func(x, y, z=[10, 20]):
     return prodult, sum
 
 
-# prodult, sum = func(4, 3)
-# prodult, sum = func(4, 3, [30, 40])
+prodult, sum = func(4, 3)
+prodult, sum = func(4, 3, [30, 40])
 
 # print(prodult, sum)
 
