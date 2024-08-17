@@ -75,4 +75,117 @@ def max_sub_array(arr):
     return max(ans, left_sum + right_sum)
 
 
-print(max_sub_array([-1, 2, -3, 3, 5]))
+# print(max_sub_array([-1, 2, -3, 3, 5]))
+
+
+# CHECK FIBONACCI
+def is_fibonacci(arr):
+    if len(arr) < 3:
+        return False
+
+    for i in range(len(arr) - 2):
+        if arr[i] + arr[i + 1] != arr[i + 2]:
+            return False
+
+    return True
+
+
+# print(is_fibonacci([1, 1, 2, 3, 5, 8, 13]))  # true
+# print(is_fibonacci([1, 1, 2, 3, 4, 8, 13]))  # false
+
+
+# CREATE FIBONACCI
+def create_fibonacci(num):  # 1
+    if num < 3:
+        return False
+    stack = [1]
+
+    for i in range(num - 2):
+        if len(stack) == 1:
+            stack.append(i + 1)
+        stack.append(stack[i] + stack[i + 1])
+
+    return stack
+
+
+# print(create_fibonacci(5))
+
+
+# FIND FACTORIAL
+def find_factorial(num):  # 1
+    factorial = 1
+    # Loop from 'num' down to 1, decrementing by 1 in each iteration
+    for i in range(num, 0, -1):
+        factorial *= i
+
+    return factorial
+
+
+def find_factorial(num):  # 2
+    if num == 0 or num == 1:
+        return 1
+    else:
+        factorial = num * find_factorial(num - 1)
+        return factorial
+
+
+# print(find_factorial(5))
+
+
+# REMOVE ELEMENT
+def remove_element(arr, element):
+    stack = []
+    for i in range(len(arr)):
+        if arr[i] != element:
+            stack.append(arr[i])
+
+    return stack
+
+
+def remove_element(arr, element, option=False):
+    if option:
+        # Use filter() to include only the items in 'arr' that are not equal to 'element'
+        # Convert the result of filter() back into a list
+        return list(filter(lambda item: item != element, arr))
+    else:
+        # Create a new list that includes only the items in 'arr' that are not equal to 'element'
+        return [item for item in arr if item != element]
+
+
+# print(remove_element([1, 2, 5, 2, 3, 7], 3))
+
+
+# REMOVE DUPLICATES
+def remove_duplicates(arr, option):
+    stack = []
+
+    if option == "first":
+        for i in range(len(arr)):
+            if arr[i] not in stack:
+                stack.append(arr[i])
+
+    elif option == "second":
+        i = 0
+        while i < len(arr):
+            if arr[i] not in stack:
+                stack.append(arr[i])
+            i += 1
+
+    else:
+        # Use a set to keep track of seen elements
+        seen = set()
+        # Use filter() to create a new list with unique elements
+        # The lambda function checks if the item is not in the set and adds it if it's new
+        return list(filter(lambda x: x not in seen and not seen.add(x), arr))
+        # Explanation of 'x not in seen and not seen.add(x)':
+        # 1. 'x not in seen' checks if x is not in the set
+        # 2. 'and not seen.add(x)' does two things:
+        #    a) Adds x to the set (side effect)
+        #    b) Always evaluates to True (because set.add() returns None, and 'not None' is True)
+        # 3. If x is already in seen, the first part is False, so the second part isn't evaluated
+        #    (short-circuit evaluation), and x isn't added again
+        # 4. This 'trick' allows us to check for uniqueness and update seen items in one expression
+    return stack
+
+
+print(remove_duplicates([1, 2, 2, 3, 5, 5, 7], ""))
