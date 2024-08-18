@@ -188,4 +188,60 @@ def remove_duplicates(arr, option):
     return stack
 
 
-print(remove_duplicates([1, 2, 2, 3, 5, 5, 7], ""))
+# print(remove_duplicates([1, 2, 2, 3, 5, 5, 7], ""))
+
+# CHECK PALINDROME
+import re
+
+
+def is_palindrome(str, option):
+    # The regular expression r"[^a-z0-9]" matches any character that is not a lowercase letter (a-z)
+    # or a digit (0-9), and re.sub() replaces them with an empty string ("").
+    clean_str = re.sub(r"[^a-z0-9]", "", str.lower())
+    if option == "first":
+        # clean_str[::-1] creates a reversed copy of clean_str by using Python's slicing feature.
+        return clean_str == clean_str[::-1]
+    elif option == "second":
+        right = len(str) - 1
+        m = round(len(clean_str) / 2)
+
+        for i in range(m):
+            if clean_str[i] != clean_str[right]:
+                return False
+            right -= 1
+
+        return True
+
+    else:
+        # Use two pointers to compare characters from both ends of the string
+        left = 0
+        right = len(str) - 1
+
+        while left < right:
+            if clean_str[left] != clean_str[right]:
+                return False
+            left += 1
+            right -= 1
+
+        return True
+
+
+# print(is_palindrome("madam", ""))
+
+
+# BINARY SEARCH
+def binary_search(arr, key):
+    mid = len(arr) // 2  # similar to Math.floor
+    mid_element = arr[mid]
+
+    if mid_element == key:
+        return True
+    elif mid_element < key and len(arr) > 1:
+        return binary_search(arr[mid:], key)
+    elif mid_element > key and len(arr) > 1:
+        return binary_search(arr[:mid], key)
+    else:
+        return False
+
+
+print(binary_search([5, 7, 12, 16, 36, 39, 42, 56, 71], 56))
